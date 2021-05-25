@@ -105,8 +105,6 @@ jobs:
     strategy:
       matrix:
         exclude:
-          - project: playJson
-            scala: '3.0.0'
           - project: circe
             scala: '3.0.0'
           - project: json4sCommon

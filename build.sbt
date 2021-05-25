@@ -268,7 +268,6 @@ lazy val playJson = project
   .settings(releaseSettings)
   .settings(
     name := "jwt-play-json",
-    crossScalaVersions := crossVersion2Only,
     libraryDependencies ++= Seq(Libs.playJson)
   )
   .aggregate(jsonCommon)
