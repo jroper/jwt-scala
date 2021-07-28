@@ -10,7 +10,7 @@
 
 <h3 id="installation">Installation</h3>
 
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="s">"com.github.jwt-scala"</span> <span class="o">%%</span> <span class="s">"jwt-core"</span> <span class="o">%</span> <span class="s">"8.0.2"</span>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="s">"com.github.jwt-scala"</span> <span class="o">%%</span> <span class="s">"jwt-core"</span> <span class="o">%</span> <span class="s">"8.0.3"</span>
 </code></pre></div></div>
 
 <h3 id="basic-usage">Basic usage</h3>
@@ -44,7 +44,7 @@
 <span class="c1">// Encode from case class, header automatically generated</span>
 <span class="c1">// Set that the token has been issued now and expires in 10 seconds</span>
 <span class="nv">Jwt</span><span class="o">.</span><span class="py">encode</span><span class="o">(</span><span class="nc">JwtClaim</span><span class="o">({</span><span class="s">"""{"user":1}"""</span><span class="o">}).</span><span class="py">issuedNow</span><span class="o">.</span><span class="py">expiresIn</span><span class="o">(</span><span class="mi">10</span><span class="o">),</span> <span class="s">"secretKey"</span><span class="o">,</span> <span class="nv">JwtAlgorithm</span><span class="o">.</span><span class="py">HS512</span><span class="o">)</span>
-<span class="c1">// res4: String = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJleHAiOjE2MjMwNDg3MjMsImlhdCI6MTYyMzA0ODcxMywidXNlciI6MX0.ADxyYppax7KuspNXON5hv7-CPfr8XTxF4DE5KbJcbai5oSr200uQOVy55SKWPwwzCulKR3M4SvjQ8CuoXZmQiw"</span>
+<span class="c1">// res4: String = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJleHAiOjE2Mjc0NjI0OTQsImlhdCI6MTYyNzQ2MjQ4NCwidXNlciI6MX0.FQ3ydIJeBxdLYBx_lGKOdsmFFrXKoaKKIBwMQaVvSrzoEteQWploAQQ10MC93VmXBDTvMmFYBSskp-v4M0hqEw"</span>
 
 <span class="c1">// You can encode without signing it</span>
 <span class="nv">Jwt</span><span class="o">.</span><span class="py">encode</span><span class="o">(</span><span class="s">"""{"user":1}"""</span><span class="o">)</span>
@@ -121,7 +121,7 @@
 <span class="c1">// Failure if the token only starts in 5 seconds</span>
 <span class="nv">Jwt</span><span class="o">.</span><span class="py">decode</span><span class="o">(</span><span class="nv">Jwt</span><span class="o">.</span><span class="py">encode</span><span class="o">(</span><span class="nc">JwtClaim</span><span class="o">().</span><span class="py">startsIn</span><span class="o">(</span><span class="mi">5</span><span class="o">)))</span>
 <span class="c1">// res15: util.Try[JwtClaim] = Failure(</span>
-<span class="c1">//   exception = pdi.jwt.exceptions.JwtNotBeforeException: The token will only be valid after 2021-06-07T06:51:58Z</span>
+<span class="c1">//   exception = pdi.jwt.exceptions.JwtNotBeforeException: The token will only be valid after 2021-07-28T08:54:49Z</span>
 <span class="c1">// )</span>
 </code></pre></div></div>
 
@@ -153,18 +153,18 @@
 <span class="nv">Jwt</span><span class="o">.</span><span class="py">validate</span><span class="o">(</span><span class="s">"a.b.c"</span><span class="o">)</span>
 <span class="nv">Jwt</span><span class="o">.</span><span class="py">isValid</span><span class="o">(</span><span class="s">"a.b.c"</span><span class="o">)</span>
 <span class="c1">// pdi.jwt.exceptions.JwtValidationException: Invalid signature for this token or wrong algorithm.</span>
-<span class="c1">// 	at pdi.jwt.JwtCore.validate(JwtCore.scala:813)</span>
-<span class="c1">// 	at pdi.jwt.JwtCore.validate$(JwtCore.scala:789)</span>
-<span class="c1">// 	at pdi.jwt.Jwt$.validate(Jwt.scala:18)</span>
-<span class="c1">// 	at pdi.jwt.JwtCore.validate(JwtCore.scala:837)</span>
-<span class="c1">// 	at pdi.jwt.JwtCore.validate$(JwtCore.scala:820)</span>
-<span class="c1">// 	at pdi.jwt.Jwt$.validate(Jwt.scala:18)</span>
-<span class="c1">// 	at pdi.jwt.JwtCore.validate(JwtCore.scala:979)</span>
-<span class="c1">// 	at pdi.jwt.JwtCore.validate$(JwtCore.scala:964)</span>
-<span class="c1">// 	at pdi.jwt.Jwt$.validate(Jwt.scala:18)</span>
-<span class="c1">// 	at pdi.jwt.JwtCore.validate(JwtCore.scala:984)</span>
+<span class="c1">// 	at pdi.jwt.JwtCore.validate(JwtCore.scala:976)</span>
+<span class="c1">// 	at pdi.jwt.JwtCore.validate$(JwtCore.scala:952)</span>
+<span class="c1">// 	at pdi.jwt.Jwt$.validate(Jwt.scala:20)</span>
+<span class="c1">// 	at pdi.jwt.JwtCore.validate(JwtCore.scala:1000)</span>
 <span class="c1">// 	at pdi.jwt.JwtCore.validate$(JwtCore.scala:983)</span>
-<span class="c1">// 	at pdi.jwt.Jwt$.validate(Jwt.scala:18)</span>
+<span class="c1">// 	at pdi.jwt.Jwt$.validate(Jwt.scala:20)</span>
+<span class="c1">// 	at pdi.jwt.JwtCore.validate(JwtCore.scala:1156)</span>
+<span class="c1">// 	at pdi.jwt.JwtCore.validate$(JwtCore.scala:1141)</span>
+<span class="c1">// 	at pdi.jwt.Jwt$.validate(Jwt.scala:20)</span>
+<span class="c1">// 	at pdi.jwt.JwtCore.validate(JwtCore.scala:1161)</span>
+<span class="c1">// 	at pdi.jwt.JwtCore.validate$(JwtCore.scala:1160)</span>
+<span class="c1">// 	at pdi.jwt.Jwt$.validate(Jwt.scala:20)</span>
 <span class="c1">// 	at repl.MdocSession$App0$$anonfun$22.apply$mcV$sp(jwt-core-jwt.md:88)</span>
 <span class="c1">// 	at repl.MdocSession$App0$$anonfun$22.apply(jwt-core-jwt.md:88)</span>
 <span class="c1">// 	at repl.MdocSession$App0$$anonfun$22.apply(jwt-core-jwt.md:88)</span>
@@ -175,14 +175,14 @@
 <p>All validating and decoding methods support a final optional argument as a <code class="language-plaintext highlighter-rouge">JwtOptions</code> which allow you to disable validation checks. This is useful if you need to access data from an expired token for example. You can disable <code class="language-plaintext highlighter-rouge">expiration</code>, <code class="language-plaintext highlighter-rouge">notBefore</code> and <code class="language-plaintext highlighter-rouge">signature</code> checks. Be warned that if you disable the last one, you have no guarantee that the user didn’t change the content of the token.</p>
 
 <div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">expiredToken</span> <span class="k">=</span> <span class="nv">Jwt</span><span class="o">.</span><span class="py">encode</span><span class="o">(</span><span class="nc">JwtClaim</span><span class="o">().</span><span class="py">by</span><span class="o">(</span><span class="s">"me"</span><span class="o">).</span><span class="py">expiresIn</span><span class="o">(-</span><span class="mi">1</span><span class="o">))</span>
-<span class="c1">// expiredToken: String = "eyJhbGciOiJub25lIn0.eyJpc3MiOiJtZSIsImV4cCI6MTYyMzA0ODcxMn0."</span>
+<span class="c1">// expiredToken: String = "eyJhbGciOiJub25lIn0.eyJpc3MiOiJtZSIsImV4cCI6MTYyNzQ2MjQ4M30."</span>
 
 <span class="c1">// Fail since the token is expired</span>
 <span class="nv">Jwt</span><span class="o">.</span><span class="py">isValid</span><span class="o">(</span><span class="n">expiredToken</span><span class="o">)</span>
 <span class="c1">// res16: Boolean = false</span>
 <span class="nv">Jwt</span><span class="o">.</span><span class="py">decode</span><span class="o">(</span><span class="n">expiredToken</span><span class="o">)</span>
 <span class="c1">// res17: util.Try[JwtClaim] = Failure(</span>
-<span class="c1">//   exception = pdi.jwt.exceptions.JwtExpirationException: The token is expired since 2021-06-07T06:51:52Z</span>
+<span class="c1">//   exception = pdi.jwt.exceptions.JwtExpirationException: The token is expired since 2021-07-28T08:54:43Z</span>
 <span class="c1">// )</span>
 
 <span class="c1">// Let's disable expiration check</span>
@@ -190,7 +190,7 @@
 <span class="c1">// res18: Boolean = true</span>
 <span class="nv">Jwt</span><span class="o">.</span><span class="py">decode</span><span class="o">(</span><span class="n">expiredToken</span><span class="o">,</span> <span class="nc">JwtOptions</span><span class="o">(</span><span class="n">expiration</span> <span class="k">=</span> <span class="kc">false</span><span class="o">))</span>
 <span class="c1">// res19: util.Try[JwtClaim] = Success(</span>
-<span class="c1">//   value = JwtClaim({}, Some(me), None, None, Some(1623048712), None, None, None)</span>
+<span class="c1">//   value = JwtClaim({}, Some(me), None, None, Some(1627462483), None, None, None)</span>
 <span class="c1">// )</span>
 </code></pre></div></div>
 
@@ -201,7 +201,7 @@
 <span class="c1">// res20: Boolean = true</span>
 <span class="nv">Jwt</span><span class="o">.</span><span class="py">decode</span><span class="o">(</span><span class="n">expiredToken</span><span class="o">,</span> <span class="nc">JwtOptions</span><span class="o">(</span><span class="n">leeway</span> <span class="k">=</span> <span class="mi">30</span><span class="o">))</span>
 <span class="c1">// res21: util.Try[JwtClaim] = Success(</span>
-<span class="c1">//   value = JwtClaim({}, Some(me), None, None, Some(1623048712), None, None, None)</span>
+<span class="c1">//   value = JwtClaim({}, Some(me), None, None, Some(1627462483), None, None, None)</span>
 <span class="c1">// )</span>
 </code></pre></div></div>
 </section></div></div></div></div><script src="/jwt-scala/highlight/highlight.pack.js"></script><script>
