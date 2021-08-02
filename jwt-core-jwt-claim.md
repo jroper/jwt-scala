@@ -45,15 +45,15 @@ claim.expiresAt(1431520421)
 // res11: JwtClaim = JwtClaim({"user":1,"key1":"value1","key2":true,"key3":3,"key4":[1,2],"key5":{"key5.1":"Subkey"}}, Some(Me), Some(Something), Some(Set(You)), Some(1431520421), None, None, Some(42))
 // Right now! (the token is directly invalid...)
 claim.expiresNow
-// res12: JwtClaim = JwtClaim({"user":1,"key1":"value1","key2":true,"key3":3,"key4":[1,2],"key5":{"key5.1":"Subkey"}}, Some(Me), Some(Something), Some(Set(You)), Some(1627912588), None, None, Some(42))
+// res12: JwtClaim = JwtClaim({"user":1,"key1":"value1","key2":true,"key3":3,"key4":[1,2],"key5":{"key5.1":"Subkey"}}, Some(Me), Some(Something), Some(Set(You)), Some(1627912843), None, None, Some(42))
 
 // Set the beginning of the token (aka the "not before" attribute)
 // 5 seconds ago
 claim.startsIn(-5)
-// res13: JwtClaim = JwtClaim({"user":1,"key1":"value1","key2":true,"key3":3,"key4":[1,2],"key5":{"key5.1":"Subkey"}}, Some(Me), Some(Something), Some(Set(You)), Some(1627912593), Some(1627912583), None, Some(42))
+// res13: JwtClaim = JwtClaim({"user":1,"key1":"value1","key2":true,"key3":3,"key4":[1,2],"key5":{"key5.1":"Subkey"}}, Some(Me), Some(Something), Some(Set(You)), Some(1627912848), Some(1627912838), None, Some(42))
 // At a specific timestamp (in seconds)
 claim.startsAt(1431520421)
-// res14: JwtClaim = JwtClaim({"user":1,"key1":"value1","key2":true,"key3":3,"key4":[1,2],"key5":{"key5.1":"Subkey"}}, Some(Me), Some(Something), Some(Set(You)), Some(1627912593), Some(1431520421), None, Some(42))
+// res14: JwtClaim = JwtClaim({"user":1,"key1":"value1","key2":true,"key3":3,"key4":[1,2],"key5":{"key5.1":"Subkey"}}, Some(Me), Some(Something), Some(Set(You)), Some(1627912848), Some(1431520421), None, Some(42))
 // Right now!
 claim = claim.startsNow
 
@@ -61,10 +61,10 @@ claim = claim.startsNow
 // (you should always use claim.issuedNow, but I let you do otherwise if needed)
 // 5 seconds ago
 claim.issuedIn(-5)
-// res16: JwtClaim = JwtClaim({"user":1,"key1":"value1","key2":true,"key3":3,"key4":[1,2],"key5":{"key5.1":"Subkey"}}, Some(Me), Some(Something), Some(Set(You)), Some(1627912593), Some(1627912588), Some(1627912583), Some(42))
+// res16: JwtClaim = JwtClaim({"user":1,"key1":"value1","key2":true,"key3":3,"key4":[1,2],"key5":{"key5.1":"Subkey"}}, Some(Me), Some(Something), Some(Set(You)), Some(1627912848), Some(1627912843), Some(1627912838), Some(42))
 // At a specific timestamp (in seconds)
 claim.issuedAt(1431520421)
-// res17: JwtClaim = JwtClaim({"user":1,"key1":"value1","key2":true,"key3":3,"key4":[1,2],"key5":{"key5.1":"Subkey"}}, Some(Me), Some(Something), Some(Set(You)), Some(1627912593), Some(1627912588), Some(1431520421), Some(42))
+// res17: JwtClaim = JwtClaim({"user":1,"key1":"value1","key2":true,"key3":3,"key4":[1,2],"key5":{"key5.1":"Subkey"}}, Some(Me), Some(Something), Some(Set(You)), Some(1627912848), Some(1627912843), Some(1431520421), Some(42))
 // Right now!
 claim = claim.issuedNow
 
@@ -78,5 +78,5 @@ claim.isValid("Me", "You")
 
 // Let's stringify the final version
 claim.toJson
-// res21: String = "{\"iss\":\"Me\",\"sub\":\"Something\",\"aud\":\"You\",\"exp\":1627912593,\"nbf\":1627912588,\"iat\":1627912588,\"jti\":\"42\",\"user\":1,\"key1\":\"value1\",\"key2\":true,\"key3\":3,\"key4\":[1,2],\"key5\":{\"key5.1\":\"Subkey\"}}"
+// res21: String = "{\"iss\":\"Me\",\"sub\":\"Something\",\"aud\":\"You\",\"exp\":1627912848,\"nbf\":1627912843,\"iat\":1627912843,\"jti\":\"42\",\"user\":1,\"key1\":\"value1\",\"key2\":true,\"key3\":3,\"key4\":[1,2],\"key5\":{\"key5.1\":\"Subkey\"}}"
 ```
