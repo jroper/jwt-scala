@@ -6,7 +6,7 @@
 
 <h3 id="installation">Installation</h3>
 
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="s">"com.github.jwt-scala"</span> <span class="o">%%</span> <span class="s">"jwt-zio-json"</span> <span class="o">%</span> <span class="s">"9.1.0"</span>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="s">"com.github.jwt-scala"</span> <span class="o">%%</span> <span class="s">"jwt-zio-json"</span> <span class="o">%</span> <span class="s">"9.1.1"</span>
 </code></pre></div></div>
 
 <h3 id="basic-usage">Basic usage</h3>
@@ -18,27 +18,27 @@
   <span class="n">expiration</span> <span class="k">=</span> <span class="nc">Some</span><span class="o">(</span><span class="nv">Instant</span><span class="o">.</span><span class="py">now</span><span class="o">.</span><span class="py">plusSeconds</span><span class="o">(</span><span class="mi">157784760</span><span class="o">).</span><span class="py">getEpochSecond</span><span class="o">),</span>
   <span class="n">issuedAt</span> <span class="k">=</span> <span class="nc">Some</span><span class="o">(</span><span class="nv">Instant</span><span class="o">.</span><span class="py">now</span><span class="o">.</span><span class="py">getEpochSecond</span><span class="o">)</span>
 <span class="o">)</span>
-<span class="c1">// claim: JwtClaim = JwtClaim({}, None, None, None, Some(1818680766), None, Some(1660896006), None)</span>
+<span class="c1">// claim: JwtClaim = JwtClaim({}, None, None, None, Some(1819679598), None, Some(1661894838), None)</span>
 <span class="k">val</span> <span class="nv">key</span> <span class="k">=</span> <span class="s">"secretKey"</span>
 <span class="c1">// key: String = "secretKey"</span>
 <span class="k">val</span> <span class="nv">algo</span> <span class="k">=</span> <span class="nv">JwtAlgorithm</span><span class="o">.</span><span class="py">HS256</span>
 <span class="c1">// algo: JwtAlgorithm.HS256.type = HS256</span>
 
 <span class="k">val</span> <span class="nv">token</span> <span class="k">=</span> <span class="nv">JwtZIOJson</span><span class="o">.</span><span class="py">encode</span><span class="o">(</span><span class="n">claim</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="n">algo</span><span class="o">)</span>
-<span class="c1">// token: String = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE4MTg2ODA3NjYsImlhdCI6MTY2MDg5NjAwNn0.svhoMZbPSGd3-9OsqodBzacvmCSo1efEZsWJPeTEpQg"</span>
+<span class="c1">// token: String = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE4MTk2Nzk1OTgsImlhdCI6MTY2MTg5NDgzOH0.P4qZA0ey2F9c6uvZaIxPfN4Zcv25fClb5gSfQXy1rco"</span>
 
 <span class="nv">JwtZIOJson</span><span class="o">.</span><span class="py">decodeJson</span><span class="o">(</span><span class="n">token</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="nc">Seq</span><span class="o">(</span><span class="nv">JwtAlgorithm</span><span class="o">.</span><span class="py">HS256</span><span class="o">))</span>
 <span class="c1">// res1: util.Try[zio.json.ast.Json] = Success(</span>
 <span class="c1">//   value = Obj(</span>
 <span class="c1">//     fields = IndexedSeq(</span>
-<span class="c1">//       ("exp", Num(value = 1818680766)),</span>
-<span class="c1">//       ("iat", Num(value = 1660896006))</span>
+<span class="c1">//       ("exp", Num(value = 1819679598)),</span>
+<span class="c1">//       ("iat", Num(value = 1661894838))</span>
 <span class="c1">//     )</span>
 <span class="c1">//   )</span>
 <span class="c1">// )</span>
 <span class="nv">JwtZIOJson</span><span class="o">.</span><span class="py">decode</span><span class="o">(</span><span class="n">token</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="nc">Seq</span><span class="o">(</span><span class="nv">JwtAlgorithm</span><span class="o">.</span><span class="py">HS256</span><span class="o">))</span>
 <span class="c1">// res2: util.Try[JwtClaim] = Success(</span>
-<span class="c1">//   value = JwtClaim({}, None, None, None, Some(1818680766), None, Some(1660896006), None)</span>
+<span class="c1">//   value = JwtClaim({}, None, None, None, Some(1819679598), None, Some(1661894838), None)</span>
 <span class="c1">// )</span>
 </code></pre></div></div>
 
@@ -56,7 +56,7 @@
 
 <span class="k">val</span> <span class="nv">claimJsonEither</span> <span class="k">=</span> <span class="n">s</span><span class="s">"""{"expires":${Instant.now.getEpochSecond}}"""</span><span class="o">.</span><span class="py">fromJson</span><span class="o">[</span><span class="kt">Json</span><span class="o">]</span>
 <span class="c1">// claimJsonEither: Either[String, Json] = Right(</span>
-<span class="c1">//   value = Obj(fields = IndexedSeq(("expires", Num(value = 1660896006))))</span>
+<span class="c1">//   value = Obj(fields = IndexedSeq(("expires", Num(value = 1661894838))))</span>
 <span class="c1">// )</span>
 <span class="k">val</span> <span class="nv">headerEither</span> <span class="k">=</span> <span class="s">"""{"typ":"JWT","alg":"HS256"}"""</span><span class="o">.</span><span class="py">fromJson</span><span class="o">[</span><span class="kt">Json</span><span class="o">]</span>
 <span class="c1">// headerEither: Either[String, Json] = Right(</span>
@@ -77,7 +77,7 @@
   <span class="nv">JwtZIOJson</span><span class="o">.</span><span class="py">encode</span><span class="o">(</span><span class="n">header</span><span class="o">,</span> <span class="n">claimJson</span><span class="o">,</span> <span class="n">key</span><span class="o">)</span>
 <span class="o">}</span>
 <span class="c1">// res4: Either[String, String] = Right(</span>
-<span class="c1">//   value = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHBpcmVzIjoxNjYwODk2MDA2fQ.FAUoMUOdFDYmy7kgch2SXXb7IrUm84BKPk-cNNNERT4"</span>
+<span class="c1">//   value = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHBpcmVzIjoxNjYxODk0ODM4fQ.Cp91Fh20KfDsM29jKjn6ZytJ25i2KwSIFQf7wU7za7c"</span>
 <span class="c1">// )</span>
 </code></pre></div></div>
 
@@ -90,22 +90,22 @@
   <span class="n">expiration</span> <span class="k">=</span> <span class="nc">Some</span><span class="o">(</span><span class="nv">Instant</span><span class="o">.</span><span class="py">now</span><span class="o">.</span><span class="py">plusSeconds</span><span class="o">(</span><span class="mi">157784760</span><span class="o">).</span><span class="py">getEpochSecond</span><span class="o">),</span>
   <span class="n">issuedAt</span> <span class="k">=</span> <span class="nc">Some</span><span class="o">(</span><span class="nv">Instant</span><span class="o">.</span><span class="py">now</span><span class="o">.</span><span class="py">getEpochSecond</span><span class="o">)</span>
 <span class="o">)</span>
-<span class="c1">// claim: JwtClaim = JwtClaim({}, None, None, None, Some(1818680766), None, Some(1660896006), None)</span>
+<span class="c1">// claim: JwtClaim = JwtClaim({}, None, None, None, Some(1819679598), None, Some(1661894838), None)</span>
 <span class="k">val</span> <span class="nv">key</span> <span class="k">=</span> <span class="s">"secretKey"</span>
 <span class="c1">// key: String = "secretKey"</span>
 <span class="k">val</span> <span class="nv">algo</span> <span class="k">=</span> <span class="nv">JwtAlgorithm</span><span class="o">.</span><span class="py">HS256</span>
 <span class="c1">// algo: JwtAlgorithm.HS256.type = HS256</span>
 
 <span class="k">val</span> <span class="nv">token</span> <span class="k">=</span> <span class="nv">JwtZIOJson</span><span class="o">.</span><span class="py">encode</span><span class="o">(</span><span class="n">claim</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="n">algo</span><span class="o">)</span>
-<span class="c1">// token: String = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE4MTg2ODA3NjYsImlhdCI6MTY2MDg5NjAwNn0.svhoMZbPSGd3-9OsqodBzacvmCSo1efEZsWJPeTEpQg"</span>
+<span class="c1">// token: String = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE4MTk2Nzk1OTgsImlhdCI6MTY2MTg5NDgzOH0.P4qZA0ey2F9c6uvZaIxPfN4Zcv25fClb5gSfQXy1rco"</span>
 
 <span class="c1">// You can decode to JsObject</span>
 <span class="nv">JwtZIOJson</span><span class="o">.</span><span class="py">decodeJson</span><span class="o">(</span><span class="n">token</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="nc">Seq</span><span class="o">(</span><span class="nv">JwtAlgorithm</span><span class="o">.</span><span class="py">HS256</span><span class="o">))</span>
 <span class="c1">// res6: util.Try[zio.json.ast.Json] = Success(</span>
 <span class="c1">//   value = Obj(</span>
 <span class="c1">//     fields = IndexedSeq(</span>
-<span class="c1">//       ("exp", Num(value = 1818680766)),</span>
-<span class="c1">//       ("iat", Num(value = 1660896006))</span>
+<span class="c1">//       ("exp", Num(value = 1819679598)),</span>
+<span class="c1">//       ("iat", Num(value = 1661894838))</span>
 <span class="c1">//     )</span>
 <span class="c1">//   )</span>
 <span class="c1">// )</span>
@@ -120,24 +120,24 @@
 <span class="c1">//     ),</span>
 <span class="c1">//     Obj(</span>
 <span class="c1">//       fields = IndexedSeq(</span>
-<span class="c1">//         ("exp", Num(value = 1818680766)),</span>
-<span class="c1">//         ("iat", Num(value = 1660896006))</span>
+<span class="c1">//         ("exp", Num(value = 1819679598)),</span>
+<span class="c1">//         ("iat", Num(value = 1661894838))</span>
 <span class="c1">//       )</span>
 <span class="c1">//     ),</span>
-<span class="c1">//     "svhoMZbPSGd3-9OsqodBzacvmCSo1efEZsWJPeTEpQg"</span>
+<span class="c1">//     "P4qZA0ey2F9c6uvZaIxPfN4Zcv25fClb5gSfQXy1rco"</span>
 <span class="c1">//   )</span>
 <span class="c1">// )</span>
 <span class="c1">// Or to case classes</span>
 <span class="nv">JwtZIOJson</span><span class="o">.</span><span class="py">decode</span><span class="o">(</span><span class="n">token</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="nc">Seq</span><span class="o">(</span><span class="nv">JwtAlgorithm</span><span class="o">.</span><span class="py">HS256</span><span class="o">))</span>
 <span class="c1">// res8: util.Try[JwtClaim] = Success(</span>
-<span class="c1">//   value = JwtClaim({}, None, None, None, Some(1818680766), None, Some(1660896006), None)</span>
+<span class="c1">//   value = JwtClaim({}, None, None, None, Some(1819679598), None, Some(1661894838), None)</span>
 <span class="c1">// )</span>
 <span class="nv">JwtZIOJson</span><span class="o">.</span><span class="py">decodeAll</span><span class="o">(</span><span class="n">token</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="nc">Seq</span><span class="o">(</span><span class="nv">JwtAlgorithm</span><span class="o">.</span><span class="py">HS256</span><span class="o">))</span>
 <span class="c1">// res9: util.Try[(pdi.jwt.JwtHeader, JwtClaim, String)] = Success(</span>
 <span class="c1">//   value = (</span>
 <span class="c1">//     JwtHeader(Some(HS256), Some(JWT), None, None),</span>
-<span class="c1">//     JwtClaim({}, None, None, None, Some(1818680766), None, Some(1660896006), None),</span>
-<span class="c1">//     "svhoMZbPSGd3-9OsqodBzacvmCSo1efEZsWJPeTEpQg"</span>
+<span class="c1">//     JwtClaim({}, None, None, None, Some(1819679598), None, Some(1661894838), None),</span>
+<span class="c1">//     "P4qZA0ey2F9c6uvZaIxPfN4Zcv25fClb5gSfQXy1rco"</span>
 <span class="c1">//   )</span>
 <span class="c1">// )</span>
 </code></pre></div></div>
